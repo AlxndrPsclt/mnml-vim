@@ -9,58 +9,58 @@ call vundle#begin()
 "Plugin 'gmarik/vundle'
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'Raimondi/delimitMate'
+"Plugin 'MarcWeber/vim-addon-mw-utils'
+"Plugin 'Raimondi/delimitMate'
 Plugin 'bling/vim-airline'
 Plugin 'ervandew/supertab'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'honza/vim-snippets'
-Plugin 'hynek/vim-python-pep8-indent'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'kshenoy/vim-signature'
+"Plugin 'hynek/vim-python-pep8-indent'
+"Plugin 'kien/rainbow_parentheses.vim'
+"Plugin 'kshenoy/vim-signature'
 "Plugin 'scrooloose/nerdtree'
 Plugin 'simnalamburt/vim-mundo'
 Plugin 'mbbill/undotree'
-Plugin 'terryma/vim-multiple-cursors'
+"Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tomtom/tlib_vim'
 Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rails'
+"Plugin 'tpope/vim-fugitive'
+"Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-surround'
-Plugin 'vim-scripts/mru.vim'
+"Plugin 'vim-scripts/mru.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'kien/ctrlp.vim'
 Plugin 'DavidEGx/ctrlp-smarttabs'
-Plugin 'luochen1990/rainbow'
-Plugin 'mattn/emmet-vim'
+"Plugin 'luochen1990/rainbow'
+"Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-abolish'
 Plugin 'rking/ag.vim'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-session'
+"Plugin 'xolox/vim-misc'
+"Plugin 'xolox/vim-session'
 "Plugin 'EvanDotPro/nerdtree-chmod'
 Plugin 'djoshea/vim-autoread'
-Plugin 'christoomey/vim-tmux-navigator'
+"Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tmux-plugins/vim-tmux-focus-events'
 "Some markdown glitter
-Plugin 'godlygeek/tabular'
+"Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'nelstrom/vim-markdown-folding'
 "Elixir plugin
-Plugin 'elixir-lang/vim-elixir'
+"Plugin 'elixir-lang/vim-elixir'
 Plugin 'junegunn/vim-easy-align'
-Plugin 'davidhalter/jedi-vim'
+"Plugin 'davidhalter/jedi-vim'
 "Plugin 'jistr/vim-nerdtree-tabs'    Testing deactivating this plugin; if
 "everything is ok, remove it, else put it back
 Plugin 'easymotion/vim-easymotion'
-Plugin 'haoyu953/pride.vim'
+"Plugin 'haoyu953/pride.vim'
 Plugin 'arcticicestudio/nord-vim'
-Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'supercollider/scvim'
-Plugin 'dart-lang/dart-vim-plugin'
+"Plugin 'ekalinin/Dockerfile.vim'
+"Plugin 'supercollider/scvim'
+"Plugin 'dart-lang/dart-vim-plugin'
 Plugin 'AlxndrPsclt/vim-airline-themes'
 Plugin 'junegunn/fzf.vim.git'
-Plugin 'ap/vim-css-color.git'
+"Plugin 'ap/vim-css-color.git'
 
 
 call vundle#end()
@@ -157,9 +157,6 @@ if bufwinnr(1)
   map - <C-W><
 endif
 
-"Toggle RainbowParenthese
-nmap <silent> <leader>r :RainbowParenthesesToggle<CR>
-
 
 "Permet d'afficher toujours le nom du fichier en bas
 set modeline
@@ -213,9 +210,6 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>"
 
 
 
-"Permet de changer un mot et de sortir automatiquement du mode insertion à la
-"fin de ce mot
-nmap <leader>c :inoremap <lt>Space> <lt>Space><lt>Esc>:iunmap <lt>lt>Space><lt>CR><CR> caw
 
 "Permet d'afficher la liste des jumps
 nnoremap <leader>j :jumps<CR>
@@ -238,20 +232,16 @@ let g:UltiSnipsEditSplit="vertical"
 
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
+" xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
+" nmap ga <Plug>(EasyAlign)
 
-imap <leader>l <C-x><C-o>
+"imap <leader>l <C-x><C-o>
 
 "A command to allow saving a file using sudo even if you didn't use sudo vim
 command W w !sudo tee % > /dev/null
 
-
-function Ccase() range
-  echo system('echo '.shellescape(join(getline(a:firstline, a:lastline), "\n")).'| ~/.vim/scripts/ccase.py')
-endfunction
 
 set hlsearch
 
@@ -266,7 +256,7 @@ nmap O :CtrlP<CR>
 
 
 "Adding classic shell aliases to vim bash
-let $BASH_ENV = "~/.config/perso/bash_config/bash_aliases"
+"let $BASH_ENV = "~/.config/perso/bash_config/bash_aliases"
 
 "Disable session autosave because it's annoying and rarely usefull"
 let g:session_autosave = 'no'
@@ -285,9 +275,6 @@ au BufWritePost * if getline(1) =~ "^#!" | if getline(1) =~ "/bin/" | silent exe
 
 " Modifies gf to open file in new tab and create a new file if doesn't exist
 noremap gf :tabe <cfile><CR>
-
-" Run xrdb whenever Xdefaults or Xresources are updated.
-" autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
 
 "ommenting blocks of code.
 autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
