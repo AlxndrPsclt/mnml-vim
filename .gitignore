@@ -1,4 +1,5 @@
 undodir/*
+!undodir/.gitignore
 bundle/**
 sessions/
 
