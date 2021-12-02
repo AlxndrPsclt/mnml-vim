@@ -131,12 +131,7 @@ map <right> <nop>
 "utiliser jj au lieu de echap pour quitter le mode inser
 inoremap jj <esc>
 
-"Writing :w quickly saves the file, even in insert mode"
-inoremap :w <esc>:w<CR>
-
 "Racourcis pour mundo
-imap <F2> jj :MundoToggle<CR>
-nmap <F2> :MundoToggle<CR>
 nmap <leader>u :MundoToggle<CR>
 
 
@@ -165,7 +160,7 @@ set ls=2
 set undodir=~/.vim/undodir
 set undofile
 set undolevels=1000 "maximum number of changes that can be undone
-set undoreload=10000 "maximum number lines to save for undo on a buffer reload"
+set undoreload=1000 "maximum number lines to save for undo on a buffer reload"
 
 
 
@@ -197,8 +192,7 @@ nmap <silent> <leader>D ?\d<CR>
 nmap <silent> <leader>m :marks<CR>
 
 
-" copy current file name (relative/absolute) to system clipboard (Linux
-" version)
+" copy current file name (relative/absolute) to system clipboard
 " relative path (src/foo.txt)
 nnoremap <leader>cwf :let @"=expand("%")<CR>
 
@@ -230,14 +224,6 @@ let g:UltiSnipsExpandTrigger="<tab>"
 "Edit snippets in a vertical snip
 let g:UltiSnipsEditSplit="vertical"
 
-
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-" xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-" nmap ga <Plug>(EasyAlign)
-
-"imap <leader>l <C-x><C-o>
 
 "A command to allow saving a file using sudo even if you didn't use sudo vim
 command W w !sudo tee % > /dev/null
@@ -274,9 +260,9 @@ set shortmess=F
 au BufWritePost * if getline(1) =~ "^#!" | if getline(1) =~ "/bin/" | silent execute "!chmod a+x <afile>" | endif | endif
 
 " Modifies gf to open file in new tab and create a new file if doesn't exist
-noremap gf :tabe <cfile><CR>
+" noremap gf :tabe <cfile><CR>
 
-"ommenting blocks of code.
+"Commenting blocks of code.
 autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
 autocmd FileType sh,ruby,python   let b:comment_leader = '# '
 autocmd FileType conf,fstab       let b:comment_leader = '# '
@@ -286,16 +272,12 @@ autocmd FileType vim              let b:comment_leader = '" '
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
 
-"nmap <leader>n 0yyp<C-a>
-
 
 nmap <leader>l :Lines<CR>
 nmap <leader>b :Buffers<CR>
 
-
 "imap <c-x><c-k> <plug>(fzf-complete-word)
 "imap <c-x><c-f> <plug>(fzf-complete-path)
-
 
 " Ag / git grep
 function! s:ag_to_qf(line)
