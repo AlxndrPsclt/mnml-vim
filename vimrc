@@ -123,13 +123,10 @@ set gdefault
 let mapleader = ","
 
 "Supprimer les flèches pour utiliser hjkl"
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-
-"utiliser jj au lieu de echap pour quitter le mode inser
-inoremap jj <esc>
+map <Up> <nop>
+map <Down> <nop>
+map <Left> <nop>
+map <Right> <nop>
 
 "Racourcis pour mundo
 nmap <leader>u :MundoToggle<CR>
@@ -141,10 +138,10 @@ set splitbelow
 set splitright
 
 "###Shortcuts to navigate between splits"
-nmap <up> :wincmd k<CR>
-nmap <down> :wincmd j<CR>
-nmap <left> :wincmd h<CR>
-nmap <right> :wincmd l<CR>
+nmap <c-k> :wincmd k<CR>
+nmap <c-j> :wincmd j<CR>
+nmap <c-h> :wincmd h<CR>
+nmap <c-l> :wincmd l<CR>
 
 "Resizing windows with + and -
 if bufwinnr(1)
@@ -331,3 +328,11 @@ set nofoldenable
 
 vmap <Esc>[1;6A [egv
 vmap <Esc>[1;6B ]egv
+
+" Fzf extensions and vim search will ignore these folders
+set wildignore+=*/.git/*,*/db/*,*/node_modules/*
+
+" Use arrows to move between buffers
+map <Right> :bn<cr>
+map <Left> :bp<cr>
+map bd :bd<cr>
