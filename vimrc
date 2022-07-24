@@ -17,7 +17,7 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'honza/vim-snippets'
 "Plugin 'hynek/vim-python-pep8-indent'
 "Plugin 'kien/rainbow_parentheses.vim'
-"Plugin 'kshenoy/vim-signature'
+Plugin 'kshenoy/vim-signature'
 "Plugin 'scrooloose/nerdtree'
 Plugin 'simnalamburt/vim-mundo'
 Plugin 'mbbill/undotree'
@@ -167,7 +167,7 @@ if has("autocmd")
 endif
 
 "Edit the vimrc with leader v
-nmap <leader>v :tabedit $MYVIMRC<CR>
+nmap <leader>v :e $MYVIMRC<CR>
 
 " Toggle spell checking on and off with `,s`
 nmap <silent> <leader>s :set spell!<CR>
@@ -232,8 +232,8 @@ set hlsearch
 "Adding ctrlp tabs:
 let g:ctrlp_extensions = ['smarttabs']
 let g:ctrlp_prompt_mappings = {
-      \ 'AcceptSelection("e")': ['<2-LeftMouse>'],
-      \ 'AcceptSelection("t")': ['<cr>'],
+      \ 'AcceptSelection("e")': ['<cr>'],
+      \ 'AcceptSelection("t")': ['<C-t>'],
       \ }
 nmap O :CtrlP<CR>
 
@@ -335,4 +335,4 @@ set wildignore+=*/.git/*,*/db/*,*/node_modules/*
 " Use arrows to move between buffers
 map <Right> :bn<cr>
 map <Left> :bp<cr>
-map bd :bd<cr>
+map X :bd<cr>
