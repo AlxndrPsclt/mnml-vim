@@ -315,7 +315,8 @@ command! -nargs=* Find call fzf#run({
       \ })
 
 " Find string inside the CWD
-nnoremap <leader>f :silent! Find <C-R><C-W>
+nnoremap <leader>f :silent! Find <CR>
+nnoremap <leader><space> :silent! Find <CR>
 vnoremap <leader>f y:silent Find <C-R>"<CR>
 
 nnoremap <Tab> za
