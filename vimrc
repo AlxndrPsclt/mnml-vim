@@ -235,7 +235,8 @@ let g:ctrlp_prompt_mappings = {
       \ 'AcceptSelection("e")': ['<cr>'],
       \ 'AcceptSelection("t")': ['<C-t>'],
       \ }
-nmap O :CtrlP<CR>
+" nmap O :CtrlP<CR>
+nmap O :Files<CR>
 nmap <leader>o :CtrlP pwd<CR>
 
 
