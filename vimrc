@@ -120,7 +120,7 @@ set relativenumber
 set gdefault
 
 "Set my leader key
-let mapleader = ","
+let mapleader = " "
 
 "Supprimer les flèches pour utiliser hjkl"
 map <Up> <nop>
@@ -236,6 +236,7 @@ let g:ctrlp_prompt_mappings = {
       \ 'AcceptSelection("t")': ['<C-t>'],
       \ }
 nmap O :CtrlP<CR>
+nmap <leader>o :CtrlP pwd<CR>
 
 
 "Adding classic shell aliases to vim bash
@@ -246,7 +247,7 @@ let g:session_autosave = 'no'
 
 
 "Paste toggle to allow clean pasting without useless auto indentation
-set pastetoggle=<leader>p
+set pastetoggle=,p
 
 let s:hidden_all = 1
 set laststatus=0
