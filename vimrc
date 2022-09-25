@@ -35,7 +35,7 @@ Plugin 'DavidEGx/ctrlp-smarttabs'
 "Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-abolish'
-Plugin 'rking/ag.vim'
+" Plugin 'rking/ag.vim'
 "Plugin 'xolox/vim-misc'
 "Plugin 'xolox/vim-session'
 "Plugin 'EvanDotPro/nerdtree-chmod'
@@ -201,9 +201,15 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>"
 
 
 
+" <Leader>f{char} to move to {char}
+map  f <Plug>(easymotion-bd-f)
+nmap f <Plug>(easymotion-overwin-f)
 
-"Permet d'afficher la liste des jumps
-nnoremap <leader>j :jumps<CR>
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
+
+
 
 function! NumberToggle()
   if(&relativenumber == 1)
@@ -229,6 +235,9 @@ command W w !sudo tee % > /dev/null
 set hlsearch
 
 
+"  NOT USING CTRLP anymore it seems. Check if it is really depreciaded; and
+"  remove if necessary
+"  Using FZF vim instead
 "Adding ctrlp tabs:
 let g:ctrlp_extensions = ['smarttabs']
 let g:ctrlp_prompt_mappings = {
@@ -236,6 +245,7 @@ let g:ctrlp_prompt_mappings = {
       \ 'AcceptSelection("t")': ['<C-t>'],
       \ }
 " nmap O :CtrlP<CR>
+
 nmap O :Files<CR>
 nmap <leader>o :CtrlP pwd<CR>
 
@@ -262,13 +272,13 @@ au BufWritePost * if getline(1) =~ "^#!" | if getline(1) =~ "/bin/" | silent exe
 " noremap gf :tabe <cfile><CR>
 
 "Commenting blocks of code.
-autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
+autocmd FileType c,cpp,java,scala,js,ts let b:comment_leader = '// '
 autocmd FileType sh,ruby,python   let b:comment_leader = '# '
 autocmd FileType conf,fstab       let b:comment_leader = '# '
 autocmd FileType tex              let b:comment_leader = '% '
 autocmd FileType mail             let b:comment_leader = '> '
 autocmd FileType vim              let b:comment_leader = '" '
-noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
+noremap <leader>c :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
 
 
@@ -278,48 +288,9 @@ nmap <leader>b :Buffers<CR>
 "imap <c-x><c-k> <plug>(fzf-complete-word)
 "imap <c-x><c-f> <plug>(fzf-complete-path)
 
-" Ag / git grep
-function! s:ag_to_qf(line)
-  let parts = split(a:line, ':')
-  return { 'filename': parts[0]
-        \,'lnum': parts[1]
-        \,'col': parts[2]
-        \,'text': join(parts[3:], ':')
-        \ }
-endfunction
+nmap <leader>a :Ag<CR>
 
-function! s:ag_handler(lines)
-  if len(a:lines) < 2 | return | endif
-  let cmd = get({ 'ctrl-x': 'split'
-        \,'ctrl-v': 'vertical split'
-        \,'ctrl-t': 'tabe'
-        \ } , a:lines[0], 'e' )
-  let list = map(a:lines[1:], 's:ag_to_qf(v:val)')
-  let first = list[0]
-  execute cmd escape(first.filename, ' %#\')
-  execute first.lnum
-  execute 'normal!' first.col.'|zz'
-  if len(list) > 1
-    call setqflist(list)
-    copen
-    wincmd p
-  endif
-endfunction
-
-command! -nargs=* Find call fzf#run({
-      \ 'source':  printf('ag --nogroup --column --color "%s"',
-      \                   escape(empty(<q-args>) ? '^(?=.)' : <q-args>, '"\')),
-      \ 'sink*':    function('<sid>ag_handler'),
-      \ 'options': '--ansi --expect=ctrl-t,ctrl-v,ctrl-x --delimiter : --nth 4.. '.
-      \            '--multi --bind=ctrl-a:select-all,ctrl-d:deselect-all '.
-      \            '--color hl:68,hl+:110 -x',
-      \ 'down':    '50%'
-      \ })
-
-" Find string inside the CWD
-nnoremap <leader>f :silent! Find <CR>
-nnoremap <leader><space> :silent! Find <CR>
-vnoremap <leader>f y:silent Find <C-R>"<CR>
+nmap <leader>L :Locate 
 
 nnoremap <Tab> za
 nnoremap <S-Tab> zr
