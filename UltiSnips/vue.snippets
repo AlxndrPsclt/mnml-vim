@@ -1,0 +1,19 @@
+snippet component
+	<script setup lang="ts">
+	const user = useUserStore()
+	const name = ref('someone')
+
+	const someComputed = computed(() => {
+		console.log('Computed is happening!');
+		return true;
+	});
+
+	const { t } = useI18n()
+	</script>
+
+	<template>
+		<div>
+			<p>{{ name }}</p>
+		</div>
+	</template>
+endsnippet

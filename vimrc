@@ -289,6 +289,7 @@ nmap <leader>b :Buffers<CR>
 "imap <c-x><c-f> <plug>(fzf-complete-path)
 
 nmap <leader>a :Ag<CR>
+nmap <leader>h :History<CR>
 
 nmap <leader>L :Locate 
 
