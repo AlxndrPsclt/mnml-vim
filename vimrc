@@ -266,7 +266,7 @@ set noshowcmd
 set shortmess=F
 
 " Set scripts to be executable from the shell
-au BufWritePost * if getline(1) =~ "^#!" | if getline(1) =~ "/bin/" | silent execute "!chmod a+x <afile>" | endif | endif
+au BufWritePost * if getline(1) =~ "^#!" | if getline(1) =~ "/bin/" | silent execute "!chmod a+x \"<afile>\"" | endif | endif
 
 " Modifies gf to open file in new tab and create a new file if doesn't exist
 " noremap gf :tabe <cfile><CR>
@@ -311,3 +311,8 @@ set wildignore+=*/.git/*,*/db/*,*/node_modules/*
 map <Right> :bn<cr>
 map <Left> :bp<cr>
 map X :bd<cr>
+
+noremap <C-S-Left> <Nop>
+
+nnoremap <M-S-Left> :bmove -1<CR>
+nnoremap <M-S-Right> :bmove +1<CR>

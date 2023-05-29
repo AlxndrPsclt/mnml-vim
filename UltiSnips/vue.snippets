@@ -1,19 +1,40 @@
 snippet component
-	<script setup lang="ts">
-	const user = useUserStore()
-	const name = ref('someone')
+<script setup lang="ts">
+const user = useUserStore()
+const name = ref('someone')
 
-	const someComputed = computed(() => {
-		console.log('Computed is happening!');
-		return true;
-	});
+const props = defineProps<{
+  fieldName?: string
+  fieldStatus?: string
+}>()
 
-	const { t } = useI18n()
-	</script>
+const emit = defineEmits<{
+  (e: 'contentChanged', value: string): void
+}>()
 
-	<template>
-		<div>
-			<p>{{ name }}</p>
-		</div>
-	</template>
+function emitContentChanged(newContent) {
+  emit('contentChanged', newContent)
+}
+
+const someComputed = computed(() => {
+	console.log('Computed is happening!');
+	return true;
+});
+
+watch(emailStatus, async (newStatus, oldStatus) => {
+  console.log("Watching...");
+  console.log(oldStatus);
+  console.log(newStatus);
+  emit('emailValidationChanged', newStatus);
+})
+
+const { t } = useI18n()
+</script>
+
+<template>
+	<div>
+		<p>{{ name }}</p>
+		<element @content-changed="setNewEmail"/>
+	</div>
+</template>
 endsnippet
