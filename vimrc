@@ -56,11 +56,12 @@ Plugin 'easymotion/vim-easymotion'
 "Plugin 'haoyu953/pride.vim'
 Plugin 'arcticicestudio/nord-vim'
 "Plugin 'ekalinin/Dockerfile.vim'
-"Plugin 'supercollider/scvim'
+Plugin 'supercollider/scvim'
 "Plugin 'dart-lang/dart-vim-plugin'
 Plugin 'AlxndrPsclt/vim-airline-themes'
 Plugin 'junegunn/fzf.vim.git'
 "Plugin 'ap/vim-css-color.git'
+Plugin 'tikhomirov/vim-glsl'
 
 
 call vundle#end()
@@ -229,7 +230,7 @@ let g:UltiSnipsEditSplit="vertical"
 
 
 "A command to allow saving a file using sudo even if you didn't use sudo vim
-command W w !sudo tee % > /dev/null
+command W w !doas tee % > /dev/null
 
 
 set hlsearch
@@ -248,6 +249,7 @@ let g:ctrlp_prompt_mappings = {
 
 nmap O :Files<CR>
 nmap <leader>o :CtrlP pwd<CR>
+nmap <leader>a :Ag<CR>
 
 
 "Adding classic shell aliases to vim bash
@@ -316,3 +318,14 @@ noremap <C-S-Left> <Nop>
 
 nnoremap <M-S-Left> :bmove -1<CR>
 nnoremap <M-S-Right> :bmove +1<CR>
+
+" Autocommand for saving .glsl files in a specific directory
+augroup glsl_save
+    autocmd!
+    autocmd BufWritePost *.glsl if getcwd() == '/home/alex/documents/creations/graphics/visualisations/shaders/rpi' | execute '!./syncRPI.sh' | endif
+    autocmd BufWritePost *.glsl if getcwd() == '/home/alex/documents/creations/graphics/visualisations/shaders/sg-vp-003' | execute '!./syncRPI.sh' | endif
+augroup END
+
+set tags+=/usr/include/tags
+set tags+=/usr/local/include/tags
+set tags+=/home/alex/apps/graphics/raylib/src/tags
